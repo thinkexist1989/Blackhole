@@ -56,3 +56,32 @@ cmake --build build
 - Ray-traced simulation of a black hole - https://github.com/oseiskar/black-hole
 - Raytracing a blackhole - https://rantonels.github.io/starless/
 - https://github.com/rantonels/schwarzschild
+
+
+
+# Install Dependencies
+
+
+```bash
+$ pip install conan -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+$ conan profile detect
+
+$ sudo apt install -y libx11-xcb-dev  	libfontenc-dev \
+		    libxkbfile-dev  	libxmuu-dev    \
+		    libxres-dev     	libxtst-dev    \
+		    libxcb-glx0-dev 	libxcb-render-util0-dev \
+		    libxcb-xkb-dev  	libxcb-icccm4-dev  \
+		    libxcb-image0-dev   libxcb-keysyms1-dev   \
+		    libxcb-randr0-dev   libxcb-shape0-dev    \
+		    libxcb-sync-dev     libxcb-xfixes0-dev     \
+		    libxcb-dri3-dev     libxcb-cursor-dev     \
+		    libxcb-dri2-0-dev   libxcb-present-dev     \
+		    libxcb-composite0-dev  libxcb-ewmh-dev     \
+		    libxcb-res0-dev	libxcb-util-dev	     \
+		    libxcb-util0-dev 
+
+```
+
+
+
