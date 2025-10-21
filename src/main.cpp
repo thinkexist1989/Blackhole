@@ -29,8 +29,10 @@
 #include "shader.h"
 #include "texture.h"
 
-static const int SCR_WIDTH = 1920;
-static const int SCR_HEIGHT = 1080;
+// Default render resolution, will be updated to the monitor resolution when
+// creating a fullscreen window.
+static int SCR_WIDTH = 1920;
+static int SCR_HEIGHT = 1080;
 
 static float mouseX, mouseY;
 
@@ -103,10 +105,20 @@ int main(int, char **) {
   if (!glfwInit())
     return 1;
 
-  // Create window with graphics context
+  // Create window with graphics context. Use the primary monitor to create an
+  // exclusive fullscreen window and update SCR_WIDTH/SCR_HEIGHT to match the
+  // monitor's video mode so framebuffer textures are created at the correct
+  // size.
   glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+  GLFWmonitor *monitor = glfwGetPrimaryMonitor();
+  const GLFWvidmode *mode = monitor ? glfwGetVideoMode(monitor) : NULL;
+  if (mode) {
+    SCR_WIDTH = mode->width;
+    SCR_HEIGHT = mode->height;
+  }
+
   GLFWwindow *window =
-      glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Wormhole", NULL, NULL);
+      glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Wormhole", monitor, NULL);
   if (window == NULL)
     return 1;
   glfwMakeContextCurrent(window);
